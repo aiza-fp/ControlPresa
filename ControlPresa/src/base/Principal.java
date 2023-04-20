@@ -7,6 +7,10 @@ public class Principal {
 	private static final Logger LOGGER = Logger.getLogger(Principal.class.getName());
 
 	private static Scanner teclado = new Scanner(System.in);
+	
+	private static boolean permiso = false;
+	
+	private static boolean compuertasVerificadas = false;
 
 	public static void main(String[] args) {
 
@@ -24,26 +28,59 @@ public class Principal {
 			System.out.println();
 			System.out.println("1. Nueva lectura del nivel de agua.");
 			System.out.println("2. Abrir compuertas.");
-			System.out.println("3. Solicitar permiso.");
-			System.out.println("4. Salir");
+			System.out.println("	3. Solicitar permiso. Estado: " + (permiso ? "CONCEDIDO" : "NO CONCEDIDO"));
+			System.out.println("	4. Verificar compuertas. Estado: " + (compuertasVerificadas ? "VERIFICADAS" : "NO VERIFICADAS"));
+			System.out.println("5. Salir");
 			System.out.println();
 			System.out.print("Introduce opción: ");
 			opcion = teclado.nextInt();
 			switch (opcion) {
 			case 1:
 				nivel = leerNivelAgua();
+				permiso = false;
+				compuertasVerificadas = false;
 				break;
 			case 2:
-				nivel = leerNivelAgua();
+				if(abrirCompuertas()) {
+					System.out.println();
+					System.out.print("¡Compuertas abiertas!");
+				}
+				break;
+			case 3:
+				permiso = solicitarPermiso(nivel);
+				break;	
+			case 4:
+				compuertasVerificadas = verificarCompuertas();
 				break;
 			default:
 				break;
 			}
-		} while (opcion != 4);
+		} while (opcion != 5);
 
 	}
 
 	static int leerNivelAgua() {
-		return (int) Math.random()*100;
+		permiso = false;
+		return (int) Math.round(Math.random() * 100);
 	}
+
+	static boolean abrirCompuertas() {
+		if (permiso && compuertasVerificadas) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	static boolean solicitarPermiso(int nivel) {
+		if (nivel > 50) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	static boolean verificarCompuertas() {		
+		return true;
+	}
+
 }
