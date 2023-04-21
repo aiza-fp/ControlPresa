@@ -44,6 +44,9 @@ public class Principal {
 				if(abrirCompuertas()) {
 					System.out.println();
 					System.out.print("¡Compuertas abiertas!");
+				}else {
+					System.out.println();
+					System.out.print("No se cumplen las condiciones para abrir compuertas.");
 				}
 				break;
 			case 3:
@@ -55,6 +58,10 @@ public class Principal {
 				break;	
 			case 4:
 				compuertasVerificadas = verificarCompuertas();
+				if(compuertasVerificadas) {
+					System.out.println();
+					System.out.print("¡Compuertas verificadas!");
+				}
 				break;
 			default:
 				break;
