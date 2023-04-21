@@ -27,7 +27,7 @@ public class Principal {
 			System.out.println("ACCIONES: ");
 			System.out.println();
 			System.out.println("1. Nueva lectura del nivel de agua.");
-			System.out.println("2. Abrir compuertas.");
+			System.out.println("2. Abrir compuertas. Requiere:");
 			System.out.println("	3. Solicitar permiso. Estado: " + (permiso ? "CONCEDIDO" : "NO CONCEDIDO"));
 			System.out.println("	4. Verificar compuertas. Estado: " + (compuertasVerificadas ? "VERIFICADAS" : "NO VERIFICADAS"));
 			System.out.println("5. Salir");
@@ -48,6 +48,10 @@ public class Principal {
 				break;
 			case 3:
 				permiso = solicitarPermiso(nivel);
+				if(!permiso) {
+					System.out.println();
+					System.out.print("El permiso solamente se concede si el nivel del agua es superior a 50.");
+				}
 				break;	
 			case 4:
 				compuertasVerificadas = verificarCompuertas();
